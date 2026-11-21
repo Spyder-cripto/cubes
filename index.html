@@ -20738,6 +20738,12 @@ function Animatable(key, increment, update) {
     if (!empezada) { empezada = true; if (quiere) aplica(); }
   }, true);
   window.addEventListener('pointerdown', function () { if (!empezada) { empezada = true; if (quiere) aplica(); } }, true);
+  // salto directo a un nivel con la dirección ...#nivel=N
+  var salto = (location.hash.match(/nivel=(\d+)/) || [])[1];
+  if (salto) setTimeout(function () {
+    curLevelNo = +salto; curlevelTarget = null; titleScreen = false; textMode = false; titleSelected = false;
+    loadLevelFromStateOrTarget(); canvasResize();
+  }, 600);
 })();
 </script>
 </body>
